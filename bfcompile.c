@@ -31,43 +31,19 @@ int main(int argc, char* argv[])
     while (charindex < (flen / sizeof(char)))
     {
         char bfchar = bfcode[charindex];
-        
-        switch (bfchar)
+        if (bfchar == '>') mem_addr += 1;
+        if (bfchar == '<') mem_addr -= 1;
+        if (bfchar == '+') memory[mem_addr] += 1;
+        if (bfchar == '-') memory[mem_addr] -= 1;
+        if (bfchar == '.') printf("%c", memory[mem_addr]);
+        if (bfchar == '[' && memory[mem_addr] != 0) loopindex = charindex;
+        if (bfchar == ']' && memory[mem_addr] != 0) charindex = loopindex;
+        if (bfchar == ',') 
         {
-            case '>':
-                mem_addr += 1;
-                break;
-            case '<':
-                mem_addr -= 1;
-                break;
-            case '+':
-                memory[mem_addr] += 1;
-                break;
-            case '-':
-                memory[mem_addr] -= 1;
-                break;
-            case '.':
-                printf("%c", memory[mem_addr]);
-                break;
-            case ',':
-                ;
-                int input = getchar();
-                memory[mem_addr] = input;
-                break;
-            case '[':
-                if (memory[mem_addr] != 0)
-                {
-                    loopindex = charindex;
-                }
-                break;
-            case ']':
-                if (memory[mem_addr] != 0)
-                {
-                    charindex = loopindex;
-                }
-                break;
-        }   
-
+            int input = getchar();
+            memory[mem_addr] = input;
+        }
         charindex++;
     }
+    free(bfcode);
 }
