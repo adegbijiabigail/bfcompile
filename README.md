@@ -1,3 +1,5 @@
 bfcompile is a brainf*** compiler 
+<br>
 usage: bfcompile xyz.bf
-(note that this is not the best implementation especially since I'm trash at C, but if you want to use the code, feel free)
+<br>
+(note that this is probably not the best implementation)
